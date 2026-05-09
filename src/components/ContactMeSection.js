@@ -38,13 +38,14 @@ const LandingSection = () => {
       comment: '',
     },
     onSubmit: (values) => {
-      submit('some dummy url', values);
+      submit('https://example.mx/contact-me', values);
     },
     validationSchema: Yup.object({
       firstName: Yup.string().required('Required'),
-      email: Yup.string().required('Required'),
-      type: Yup.string().required('Required'),
-      comment: Yup.string().required('Required'),
+      email: Yup.string().email("Invalid email address").required('Required'),
+      comment: Yup.string()
+        .min(25, "Must be 25 characters at minimum")  
+        .required('Required'),
     }),
   });
 
@@ -58,7 +59,7 @@ const LandingSection = () => {
           <form onSubmit={formik.handleSubmit}>
             <VStack spacing={4}>
               <FormControl
-                isInvalid={formik.touched.firstName && formik.errors.firstName}
+                isInvalid={formik.touched.firstName && !!formik.errors.firstName}
               >
                 <FormLabel htmlFor="firstName">Name</FormLabel>
                 <Input
@@ -73,7 +74,7 @@ const LandingSection = () => {
                 <FormErrorMessage>{formik.errors.firstName}</FormErrorMessage>
               </FormControl>
               <FormControl
-                isInvalid={formik.touched.email && formik.errors.email}
+                isInvalid={formik.touched.email && !!formik.errors.email}
               >
                 <FormLabel htmlFor="email">Email Address</FormLabel>
                 <Input
@@ -107,7 +108,7 @@ const LandingSection = () => {
                 </Select>
               </FormControl>
               <FormControl
-                isInvalid={formik.touched.comment && formik.errors.comment}
+                isInvalid={formik.touched.comment && !!formik.errors.comment}
               >
                 <FormLabel htmlFor="comment">Your message</FormLabel>
                 <Textarea

@@ -44,20 +44,20 @@ const Header = () => {
   const [scrollYPosition, setScrollYPosition] = useState(window.scrollY);
 
   useEffect(() => {
+    const handleScroll = (event) => {
+      const currentScroll = window.scrollY;
+      setScrollYPosition((state) => {
+        setHidden(state < currentScroll);
+        return currentScroll;
+      });
+    };
+
     window.addEventListener('scroll', handleScroll);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const handleScroll = (event) => {
-    const currentScroll = window.scrollY;
-    setScrollYPosition((state) => {
-      setHidden(state < currentScroll);
-      return currentScroll; 
-    });
-  };
 
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
