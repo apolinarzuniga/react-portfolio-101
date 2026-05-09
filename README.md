@@ -103,4 +103,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 Apolinar Zuñiga - [japolinarzuniga@gmail.com](mailto:japolinarzuniga@gmail.com)
+
 Project Link: [https://github.com/apolinarzuniga/react-portfolio-101](https://github.com/apolinarzuniga/react-portfolio-101)
